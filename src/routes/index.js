@@ -6,14 +6,19 @@ const router = new VueRouter({
     mode: 'history',
     routes: [
         {
-            path: '/test',
-            name: 'test',
-            component: () => import('../views/Test.vue')
+            path: '/',
+            name: 'home',
+            component: () => import('../views/Home')
         },
         {
-            path: '/again-test',
-            name: 'againtest',
-            component: () => import('../views/AgainTest.vue')
+            path: '/registration',
+            name: 'registration',
+            component: () => import('../views/Registration')
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: () => import('../views/Login')
         },
     ]
 });
