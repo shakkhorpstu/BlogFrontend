@@ -13,6 +13,7 @@ import store from './store'
 Vue.config.productionTip = false;
 
 axios.defaults.baseURL = 'http://localhost:8000/api/';
+axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 
 new Vue({
   render: h => h(App),

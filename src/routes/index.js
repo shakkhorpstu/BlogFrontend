@@ -20,6 +20,11 @@ const router = new VueRouter({
             name: 'login',
             component: () => import('../views/Login')
         },
+        {
+            path: '/posts/create',
+            name: 'post.create',
+            component: () => import('../views/Posts/Create')
+        },
     ]
 });
 

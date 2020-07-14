@@ -2,24 +2,24 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 Vue.use(Vuex);
 
+import category from "./modules/category";
+import posts from "./modules/posts";
+
 const store = new Vuex.Store({
+    modules: {
+      category, posts
+    },
     state: {
-        counter: 0
+
     },
     getters: {
-        getCounter(state) {
-            return state.counter;
-        }
+
     },
     mutations: {
-        setCounter(state) {
-            state.counter++;
-        }
+
     },
     actions: {
-        setCounterAction(context) {
-            context.commit('setCounter');
-        }
+
     }
 });
 
