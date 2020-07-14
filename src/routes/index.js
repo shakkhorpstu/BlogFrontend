@@ -22,8 +22,13 @@ const router = new VueRouter({
         },
         {
             path: '/posts/create',
-            name: 'post.create',
+            name: 'posts.create',
             component: () => import('../views/Posts/Create')
+        },
+        {
+            path: '/posts/:id/edit',
+            name: 'posts.edit',
+            component: () => import('../views/Posts/Edit')
         },
     ]
 });
