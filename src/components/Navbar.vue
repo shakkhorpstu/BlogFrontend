@@ -14,7 +14,7 @@
                     <router-link class="nav-link" to="/login">Login</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/registration">Registration</router-link>
+                    <router-link class="nav-link" to="/registration">Registration {{ counter }}</router-link>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -27,7 +27,12 @@
 
 <script>
     export default {
-        name: "Navbar"
+        name: "Navbar",
+        computed: {
+            counter() {
+                return this.$store.getters.getCounter;
+            }
+        }
     }
 </script>
 

@@ -8,6 +8,7 @@ Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 
 import router from './routes'
+import store from './store'
 
 Vue.config.productionTip = false;
 
@@ -15,5 +16,6 @@ axios.defaults.baseURL = 'http://localhost:8000/api/';
 
 new Vue({
   render: h => h(App),
-  router
+  router,
+  store
 }).$mount('#app')
