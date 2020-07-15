@@ -1,0 +1,45 @@
+<template>
+    <div class="card-footer">
+        {{ post.likes.length }} Likes
+       <div v-if="loggedInUser">
+           <button class="btn btn-sm btn-success" @click="unlikePost" v-if="checkUserHasLike()">
+               <i class="fa fa-thumbs-down"></i>
+           </button>
+           <button class="btn btn-sm btn-danger" @click="likePost" v-else>
+               <i class="fa fa-thumbs-up"></i>
+           </button>
+       </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "Like",
+        props: ['post'],
+        data() {
+            return {
+                loggedInUser: JSON.parse(localStorage.getItem('user')),
+            }
+        },
+        methods: {
+            likePost() {
+                this.$store.dispatch('ACTION_LIKE_THIS_POST', this.post);
+            },
+            unlikePost() {
+                this.$store.dispatch('ACTION_UNLIKE_THIS_POST', this.post);
+            },
+            checkUserHasLike() {
+                let like = this.post.likes.filter(like => like.user_id == this.loggedInUser.id);
+                if(like.length > 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>

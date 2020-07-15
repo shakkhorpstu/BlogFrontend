@@ -63,6 +63,30 @@ const customActions = {
             .catch(exception => {
                 console.log(exception);
             })
+    },
+    ACTION_LIKE_THIS_POST: async function(context, payload) {
+        await axios.post('likes/store', {
+            post_id: payload.id
+        })
+            .then((response) => {
+                console.log(response);
+                context.commit('MUTATION_PUSH_POST_LIKES', response.data.data);
+            })
+            .catch(exception => {
+                console.log(exception);
+            })
+    },
+    ACTION_UNLIKE_THIS_POST: async function(context, payload) {
+        await axios.post('likes/store', {
+            post_id: payload.id
+        })
+            .then((response) => {
+                console.log(response);
+                context.commit('MUTATION_POP_POST_LIKES', response.data.data);
+            })
+            .catch(exception => {
+                console.log(exception);
+            })
     }
 };
 
@@ -81,6 +105,15 @@ const customMutations = {
     },
     MUTATION_DELETE_POST_FROM_ARRAY: function(state, index) {
         state.posts.splice(index, 1);
+    },
+    MUTATION_PUSH_POST_LIKES: function(state, payload) {
+        let post = state.posts.filter(post => post.id == payload.post_id);
+        post[0].likes.push(payload);
+    },
+    MUTATION_POP_POST_LIKES: function(state, payload) {
+        let post = state.posts.filter(post => post.id == payload.post_id);
+        let index = post[0].likes.findIndex(like => like.user_id == payload.user_id);
+        post[0].likes.splice(index, 1);
     }
 };
 

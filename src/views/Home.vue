@@ -13,12 +13,14 @@
                <p class="card-text">{{ post.description }}</p>
                <a href="#" class="btn btn-primary">Go to details</a>
            </div>
+           <Like :post="post"></Like>
        </div>
    </div>
 </template>
 
 <script>
     import { mapGetters } from 'vuex';
+    import Like from '../components/post/Like';
     export default {
         name: "Home",
         data() {
@@ -31,7 +33,7 @@
                 this.$store.dispatch('ACTION_DELETE_POST', {
                     postId: postId,
                     index: index
-                })
+                });
             }
         },
         created() {
@@ -41,6 +43,9 @@
             ...mapGetters({
                 posts: 'GET_ALL_POSTS'
             })
+        },
+        components: {
+            Like
         }
     }
 </script>
