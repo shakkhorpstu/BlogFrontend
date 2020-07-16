@@ -30,6 +30,11 @@ const router = new VueRouter({
             name: 'posts.edit',
             component: () => import('../views/Posts/Edit')
         },
+        {
+            path: '/posts/:id/view',
+            name: 'posts.view',
+            component: () => import('../views/Posts/View')
+        },
     ]
 });
 

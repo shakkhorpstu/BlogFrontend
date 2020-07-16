@@ -11,7 +11,7 @@
            <div class="card-body">
                <h5 class="card-title">{{ post.category.title }}</h5>
                <p class="card-text">{{ post.description }}</p>
-               <a href="#" class="btn btn-primary">Go to details</a>
+               <router-link :to="{name: 'posts.view', params: {id: post.id}}" class="btn btn-primary">Go to details</router-link>
            </div>
            <Like :post="post"></Like>
        </div>
