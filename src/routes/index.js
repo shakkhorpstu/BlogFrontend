@@ -11,6 +11,11 @@ const router = new VueRouter({
             component: () => import('../views/Home')
         },
         {
+            path: '/search',
+            name: 'search',
+            component: () => import('../views/Posts/Search')
+        },
+        {
             path: '/registration',
             name: 'registration',
             component: () => import('../views/Registration')

@@ -10,7 +10,7 @@
            </div>
            <div class="card-body">
                <h5 class="card-title">{{ post.category.title }}</h5>
-               <p class="card-text">{{ post.description }}</p>
+               <v-md-preview :text="post.description"></v-md-preview>
                <router-link :to="{name: 'posts.view', params: {id: post.id}}" class="btn btn-primary">Go to details</router-link>
            </div>
            <Like :post="post"></Like>
@@ -25,7 +25,7 @@
         name: "Home",
         data() {
             return {
-                loggedInUserId: JSON.parse(localStorage.getItem('user')),
+                loggedInUserId: JSON.parse(localStorage.getItem('user'))
             }
         },
         methods: {

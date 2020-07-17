@@ -12,7 +12,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea v-model="post.description" id="description" cols="30" rows="10" class="form-control"></textarea>
+                        <v-md-editor v-model="post.description" height="400px" id="description"></v-md-editor>
                     </div>
                     <div class="form-group">
                         <label for="category_id">Category</label>

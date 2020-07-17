@@ -10,20 +10,23 @@
                 <li class="nav-item">
                     <router-link class="nav-link" to="/">Home</router-link>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" v-if="loggedInUserId">
                     <router-link class="nav-link" to="/posts/create">New Post</router-link>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item pointer" v-if="loggedInUserId">
+                    <a class="nav-link" @click="logout">Logout</a>
+                </li>
+                <li class="nav-item" v-if="!loggedInUserId">
                     <router-link class="nav-link" to="/login">Login</router-link>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" v-if="!loggedInUserId">
                     <router-link class="nav-link" to="/registration">Registration {{ counter }}</router-link>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            <p class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="queryParams">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" @click="searchPost">Search</button>
+            </p>
         </div>
     </nav>
 </template>
@@ -35,10 +38,29 @@
             counter() {
                 return this.$store.getters.getCounter;
             }
+        },
+        data() {
+            return {
+                queryParams: '',
+                loggedInUserId: JSON.parse(localStorage.getItem('user'))
+            }
+        },
+        methods: {
+            searchPost() {
+                this.$router.push({name: 'search', query: {queryParams: this.queryParams}});
+                this.queryParams = '';
+            },
+            logout() {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                window.location.href = '/';
+            }
         }
     }
 </script>
 
 <style scoped>
-
+.pointer {
+    cursor: pointer;
+}
 </style>

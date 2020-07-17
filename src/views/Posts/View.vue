@@ -3,7 +3,7 @@
         <h4>{{ post.title }} by {{ post.user ? post.user.name : '' }}</h4>
         <small>Posted on {{ post.created_at }}</small> <br>
         <small>{{ post.category ? post.category.title : '' }}</small>
-        <p>{{ post.description }}</p>
+        <v-md-preview :text="post.description"></v-md-preview>
         <Like :post="post"></Like>
         <Comment :post="post"></Comment>
     </div>

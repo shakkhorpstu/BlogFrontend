@@ -36,7 +36,7 @@
                     if(response.data.success) {
                         localStorage.setItem('token', response.data.token);
                         localStorage.setItem('user', JSON.stringify(response.data.user));
-                        this.$router.push({name: 'home'});
+                        window.location.href = '/';
                     }
                 })
                 .catch((exception) => {

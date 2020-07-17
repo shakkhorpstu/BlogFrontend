@@ -34,6 +34,15 @@ const customActions = {
                 console.log(exception);
             })
     },
+    ACTION_SEARCH_POST: async function(context, queryParams) {
+        await axios.get('posts?queryParams=' + queryParams)
+            .then((response) => {
+                context.commit('MUTATION_SET_ALL_POSTS', response.data.data);
+            })
+            .catch(exception => {
+                console.log(exception);
+            })
+    },
     ACTION_STORE_POST: async function(context, payload) {
         await axios.post('posts/store', payload)
             .then((response) => {
