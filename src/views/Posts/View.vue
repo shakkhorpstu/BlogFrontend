@@ -4,6 +4,7 @@
         <small>Posted on {{ post.created_at }}</small> <br>
         <small>{{ post.category ? post.category.title : '' }}</small>
         <v-md-preview :text="post.description"></v-md-preview>
+        <img :src="post.image" alt="" height="150" width="200">
         <Like :post="post"></Like>
         <Comment :post="post"></Comment>
     </div>

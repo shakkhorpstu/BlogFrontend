@@ -13,7 +13,7 @@
                <v-md-preview :text="post.description"></v-md-preview>
                <router-link :to="{name: 'posts.view', params: {id: post.id}}" class="btn btn-primary">Go to details</router-link>
            </div>
-           <Like :post="post"></Like>
+           <Like :post="post" @testingEmitFromChild="testingEmitOnHome"></Like>
        </div>
    </div>
 </template>
@@ -34,6 +34,9 @@
                     postId: postId,
                     index: index
                 });
+            },
+            testingEmitOnHome(stringMessage) {
+                console.log(stringMessage);
             }
         },
         created() {

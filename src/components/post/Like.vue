@@ -23,6 +23,7 @@
         },
         methods: {
             likePost() {
+                this.$emit('testingEmitFromChild', 'Hello man');
                 this.$store.dispatch('ACTION_LIKE_THIS_POST', this.post);
             },
             unlikePost() {

@@ -20,6 +20,11 @@
                             <option :value="category.id" v-for="(category, index) in categories" :key="index">{{ category.title }}</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <img :src="post.image" width="250" height="100">
+                        <br><br>
+                        <input type="file" class="form-control" @change="onImageChange">
+                    </div>
                     <button role="button" class="btn btn-primary"  @click="updatePost">Submit</button>
                 </div>
             </div>
@@ -41,6 +46,17 @@
             this.$store.dispatch('ACTION_SINGLE_POST', this.$route.params.id);
         },
         methods: {
+            onImageChange(e) {
+                var files = e.target.files || e.dataTransfer.files;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                    this.post.image = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            },
             updatePost() {
                 this.$store.dispatch('ACTION_UPDATE_POST', this.post)
             }

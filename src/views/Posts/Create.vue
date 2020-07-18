@@ -20,6 +20,11 @@
                             <option :value="category.id" v-for="(category, index) in categories" :key="index">{{ category.title }}</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <img :src="image" width="250" height="100" v-if="image_loaded">
+                        <br><br>
+                        <input type="file" class="form-control" @change="onImageChange">
+                    </div>
                     <button role="button" class="btn btn-primary"  @click="savePost">Submit</button>
                 </div>
             </div>
@@ -33,11 +38,26 @@
         name: "Create",
         data() {
             return {
-                post: {}
+                post: {},
+                image: '',
+                image_loaded: false
             }
         },
         methods: {
+            onImageChange(e) {
+                var files = e.target.files || e.dataTransfer.files;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                    this.image = e.target.result;
+                };
+                reader.readAsDataURL(file);
+                this.image_loaded = true;
+            },
             savePost() {
+                this.post.image = this.image;
                 this.$store.dispatch('ACTION_STORE_POST', this.post);
                 this.post = {};
             }
